@@ -8,12 +8,16 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint Fill_Me_In.js",
-    "react-dev": "webpack -d --watch"
+    "lint": "eslint ./server",
+    "react-dev": "webpack -d --watch",
+    "server": "nodemon ./server/index.js",
+    "seed": "psql -d postgres -U student < schema.sql"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "pg": "^8.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "underscore": "^1.10.2"
@@ -29,6 +33,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
+    "nodemon": "^2.0.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
   }
