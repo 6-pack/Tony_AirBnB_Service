@@ -2,7 +2,8 @@ const { Client } = require('pg');
 
 const client = new Client({
   user: 'whisly',
-  port: 5432
+  port: 5432,
+  database: 'reviews'
 });
 
 client.connect((err) => {
@@ -13,9 +14,17 @@ client.connect((err) => {
   }
 });
 
-client.query('SELECT $1::text as message', ['Hello world from PostgreSQL!'], (err, res) => {
-  console.log(err ? err.stack : res.rows[0].message);
-});
+let fetchReviews = (param, res) => {
+  sql = `SELECT * FROM reviews where roomId = ${param} ORDER BY datePublished desc`;
+  client.query(sql, (err, result) => {
+    if (err) {
+      console.log('Error fetching data from pgsl : ', err);
+    } else {
+      res.status(200).send(result.rows);
+    }
+  });
+}
 
 
 module.exports.client = client;
+module.exports.fetchReviews = fetchReviews;

@@ -28,7 +28,7 @@ let fileContent = `
     id SERIAL PRIMARY KEY,
     userId INT NOT NULL,
     roomId INT NOT NULL,
-    datePublished TEXT NOT NULL,
+    datePublished DATE NOT NULL,
     comment TEXT NOT NULL,
     checkinRating DECIMAL NOT NULL,
     accuracyRating DECIMAL NOT NULL,
@@ -66,14 +66,14 @@ for (let i = 1; i <= 100; i++) {
 //create 500 random reviews, 100 reviews per room ( 5 rooms total)
 for (let i = 1; i <= 5 ; i++) {
   for (let j = 1; j <=100; j++) {
-    const datePublished = faker.date.past();
+    const datePublished = faker.date.past().toString().replace(/(GMT-\d\d\d\d)|\(|\)/g, '');
     const comment = faker.lorem.paragraph();
-    const checkinRating = Math.ceil(Math.random() * 5);
-    const accuracyRating = Math.ceil(Math.random() * 5);
-    const valueRating = Math.ceil(Math.random() * 5);
-    const communicationRating = Math.ceil(Math.random() * 5);
-    const cleanlinessRating = Math.ceil(Math.random() * 5);
-    const locationRating = Math.ceil(Math.random() * 5);
+    const checkinRating = (Math.random() * 5).toFixed(1);
+    const accuracyRating = (Math.random() * 5).toFixed(1);
+    const valueRating = (Math.random() * 5).toFixed(1);
+    const communicationRating = (Math.random() * 5).toFixed(1);
+    const cleanlinessRating = (Math.random() * 5).toFixed(1);
+    const locationRating = (Math.random() * 5).toFixed(1);
     fileContent += `INSERT INTO reviews (userId, roomId, datePublished, comment, checkinRating, accuracyRating, valueRating, communicationRating, cleanlinessRating, locationRating) values (${j}, ${i}, '${datePublished}', '${comment}', ${checkinRating}, ${accuracyRating}, ${valueRating}, ${communicationRating}, ${cleanlinessRating}, ${locationRating}); \n\n`
   }
 }
