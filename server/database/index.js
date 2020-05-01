@@ -1,6 +1,9 @@
 const { Client } = require('pg');
 
-const client = new Client();
+const client = new Client({
+  user: 'whisly',
+  port: 5432
+});
 
 client.connect((err) => {
   if (err) {
