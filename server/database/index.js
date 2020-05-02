@@ -44,16 +44,17 @@ const formatData = (data, count) => {
 };
 
 const fetchReviews = (param, res) => {
-  const sql = `SELECT reviews.id, users.firstName, users.lastName, users.username, users.avatar, \
-               rooms.roomIdentification, reviews.datePublished, reviews.comment, reviews.checkinRating, \
-               reviews.accuracyRating, reviews.valueRating, reviews.communicationRating, \
-               reviews.cleanlinessRating, reviews.locationRating \
-               FROM reviews, users, rooms \
-               WHERE roomId = ${param} AND reviews.userId = users.id AND reviews.roomId = rooms.id \
-               ORDER BY datePublished desc`;
+  const sql = `SELECT reviews.id, users.firstName, users.lastName, users.username, users.avatar,
+               rooms.roomIdentification, reviews.datePublished, reviews.comment, reviews.checkinRating,
+               reviews.accuracyRating, reviews.valueRating, reviews.communicationRating,
+               reviews.cleanlinessRating, reviews.locationRating
+               FROM reviews, users, rooms
+               WHERE roomId = ${param} AND reviews.userId = users.id AND reviews.roomId = rooms.id
+               ORDER BY datePublished desc;`;
   client.query(sql, (err, result) => {
     if (err) {
       console.log('Error fetching data from pgsl : ', err);
+      res.status(500).send(err);
     } else {
       const formattedData = formatData(result.rows, result.rowCount);
       res.status(200).send(formattedData);
