@@ -9,7 +9,7 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use('/', route.consoleLog);
 
-app.get('/rooms/:roomID/reviews', route.getReviews)
+app.get('/rooms/:roomID/reviews', route.getReviews);
 
 app.listen(PORT, (err) => {
   if (err) {
