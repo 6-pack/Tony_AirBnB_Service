@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use('/', route.consoleLog);
 
 app.get('/rooms/:roomID/reviews', route.getReviews);
+app.get('/rooms/:roomID/reviews/:phrase', route.filterReviews);
 
 app.listen(PORT, (err) => {
   if (err) {

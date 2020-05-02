@@ -10,4 +10,8 @@ module.exports = {
   getReviews: (req, res) => {
     db.fetchReviews(req.params.roomID, res);
   },
+
+  filterReviews: (req, res) => {
+    db.searchReviews(req.params.roomID, req.params.phrase, res);
+  },
 };
