@@ -11,14 +11,19 @@ const ReviewSection = styled.section`
   text-color: blue;
 `;
 
-const ReviewHeader = styled.h1`
-  color: blue;
-  font-size: 1.5em;
+const ReviewHeader = styled.div`
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.25em;
+  color: rgb(72, 72, 72);
+  padding-top: 2px;
+  padding-bottom: 2px;
 `;
 
 const StatusGrid = styled.section`
   display: grid;
-  grid-template-columns: 3fr 7fr;
+  grid-template-columns: 7fr 3fr;
+  grid-template-rows: 44px;
 `;
 
 
