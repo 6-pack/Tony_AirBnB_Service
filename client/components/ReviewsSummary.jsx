@@ -10,7 +10,7 @@ const ReviewsSummary = (props) => {
   return (
     <TotalScores>
     <div>
-      <span>starImg</span>
+      <span> <img src='https://i.imgur.com/lWEe6LL.png'/></span>
       <span>#</span>
     </div>
 
