@@ -13,9 +13,8 @@
     "server": "nodemon ./server/index.js",
     "generate-data": "node ./server/database/dataGenerator.js",
     "seed": "psql -d postgres -U student < schema.sql",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -45,8 +44,16 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "jest": "^25.5.4",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
     "nodemon": "^2.0.3",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
   }
 }

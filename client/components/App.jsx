@@ -1,5 +1,6 @@
 import React from "react";
 import Overview from "./Overview.jsx";
+import axios from "axios";
 
 class App extends React.Component {
   constructor(props){
@@ -7,10 +8,12 @@ class App extends React.Component {
 
     this.state = {
       searchPhrase: '',
+      reviewList: [],
     }
 
     this.searchInputHandle = this.searchInputHandle.bind(this);
     this.clearField = this.clearField.bind(this);
+    this.getAllReviews = this.getAllReviews.bind(this);
   }
 
   searchInputHandle(phrase) {
@@ -20,6 +23,20 @@ class App extends React.Component {
   clearField() {
     this.setState({searchPhrase: ''});
   }
+
+  getAllReviews() {
+    axios.get('/rooms/2/reviews')
+    .then(result => {
+      console.log(result);
+      this.setState({reviewList: result.data})
+    })
+    .catch(error => console.log(error))
+  }
+
+  componentDidMount() {
+    this.getAllReviews();
+  }
+
   render() {
     return (
       <div>

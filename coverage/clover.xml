@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1588720096387" clover="3.2.0">
+  <project timestamp="1588720096387" name="All files">
+    <metrics statements="49" coveredstatements="40" conditionals="6" coveredconditionals="3" methods="18" coveredmethods="10" elements="73" coveredelements="53" complexity="0" loc="49" ncloc="49" packages="1" files="4" classes="4"/>
+    <file name="App.jsx" path="/Users/whisly/Documents/HR/FEC/Tony_AirBnB_Service/client/components/App.jsx">
+      <metrics statements="13" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="4"/>
+      <line num="7" count="2" type="stmt"/>
+      <line num="9" count="2" type="stmt"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="16" count="2" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="28" count="2" type="stmt"/>
+      <line num="30" count="0" type="stmt"/>
+      <line num="31" count="0" type="stmt"/>
+      <line num="33" count="0" type="stmt"/>
+      <line num="37" count="3" type="stmt"/>
+      <line num="41" count="3" type="stmt"/>
+    </file>
+    <file name="Overview.jsx" path="/Users/whisly/Documents/HR/FEC/Tony_AirBnB_Service/client/components/Overview.jsx">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="6" count="2" type="stmt"/>
+      <line num="14" count="2" type="stmt"/>
+      <line num="23" count="2" type="stmt"/>
+      <line num="30" count="2" type="stmt"/>
+      <line num="32" count="4" type="stmt"/>
+    </file>
+    <file name="ReviewsSummary.jsx" path="/Users/whisly/Documents/HR/FEC/Tony_AirBnB_Service/client/components/ReviewsSummary.jsx">
+      <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="10" count="2" type="stmt"/>
+      <line num="19" count="2" type="stmt"/>
+      <line num="25" count="2" type="stmt"/>
+      <line num="35" count="2" type="stmt"/>
+      <line num="40" count="2" type="stmt"/>
+      <line num="47" count="2" type="stmt"/>
+      <line num="51" count="2" type="stmt"/>
+      <line num="53" count="3" type="stmt"/>
+    </file>
+    <file name="SearchReview.jsx" path="/Users/whisly/Documents/HR/FEC/Tony_AirBnB_Service/client/components/SearchReview.jsx">
+      <metrics statements="22" coveredstatements="18" conditionals="6" coveredconditionals="3" methods="8" coveredmethods="4"/>
+      <line num="5" count="2" type="stmt"/>
+      <line num="7" count="3" type="cond" truecount="1" falsecount="1"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="24" count="2" type="stmt"/>
+      <line num="35" count="2" type="stmt"/>
+      <line num="43" count="3" type="cond" truecount="1" falsecount="1"/>
+      <line num="47" count="2" type="stmt"/>
+      <line num="48" count="2" type="stmt"/>
+      <line num="49" count="2" type="stmt"/>
+      <line num="50" count="2" type="stmt"/>
+      <line num="54" count="2" type="stmt"/>
+      <line num="56" count="2" type="stmt"/>
+      <line num="60" count="2" type="stmt"/>
+      <line num="61" count="2" type="stmt"/>
+      <line num="62" count="2" type="stmt"/>
+      <line num="63" count="2" type="stmt"/>
+      <line num="68" count="0" type="stmt"/>
+      <line num="72" count="0" type="stmt"/>
+      <line num="76" count="0" type="stmt"/>
+      <line num="80" count="0" type="stmt"/>
+      <line num="84" count="3" type="stmt"/>
+      <line num="85" count="3" type="stmt"/>
+    </file>
+  </project>
+</coverage>

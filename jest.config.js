@@ -6,10 +6,13 @@ module.exports = {
   clearMocks: true,
 
   // An array of glob patterns indicating a set of files for which coverage information should be collected
-  collectCoverageFrom: ['client/**/*.{js,jsx,mjs}'],
+  // collectCoverageFrom: ['client/**/*.{js,jsx,mjs}'],
 
   // The directory where Jest should output its coverage files
   coverageDirectory: 'coverage',
+
+  // Indicates whether the coverage information should be collected while executing the test
+  collectCoverage: true,
 
   // An array of file extensions your modules use
   moduleFileExtensions: ['js', 'json', 'jsx'],
@@ -18,7 +21,12 @@ module.exports = {
   setupFiles: ['<rootDir>/enzyme.config.js'],
 
   // The test environment that will be used for testing
-  testEnvironment: 'jsdom',
+  testEnvironment: 'enzyme',
+
+  // Options that will be passed to the testEnvironment
+  testEnvironmentOptions: {
+    "enzymeAdapter": "react16",
+  },
 
   // The glob patterns Jest uses to detect test files
   testMatch: ['**/__tests__/**/*.js?(x)', '**/?(*.)+(spec|test).js?(x)'],

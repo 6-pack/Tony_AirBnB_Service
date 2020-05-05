@@ -43,6 +43,11 @@ const CancelIcon = styled.div`
   ${ props => (props.hide) ? 'background-color: white' : 'background-image: url("https://i.imgur.com/jJPp1y6.png")'};
 
 `;
+// displayName so enzyme can find styled component
+SearchInput.displayName = 'SearchInput';
+SearchForm.displayName = 'SearchForm';
+SearchIcon.displayName = 'SearchIcon';
+CancelIcon.displayName = 'CancelIcon';
 
 class SearchReview extends React.Component {
   constructor(props) {

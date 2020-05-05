@@ -45,7 +45,7 @@ const ReviewBox = styled.div`
 `;
 
 const ReviewTotal = styled(Total)`
-  width: 36px
+  width: 36px;
 `;
 
 const ReviewsSummary = (props) => {
