@@ -4,10 +4,10 @@ import ReviewsSummary from "./ReviewsSummary.jsx";
 import SearchReview from "./SearchReview.jsx";
 
 const ReviewSection = styled.section`
-  border: 1px solid black;
+  border-bottom: 1px solid grey;
   border-radius: 1px;
   height: 100px;
-  width: 600px;
+  width: 670px;
   text-color: blue;
 `;
 
@@ -22,7 +22,7 @@ const ReviewHeader = styled.div`
 
 const StatusGrid = styled.section`
   display: grid;
-  grid-template-columns: 7fr 3fr;
+  grid-template-columns: auto 33.33% ;
   grid-template-rows: 44px;
 `;
 
@@ -34,7 +34,11 @@ const Overview = (props) => {
       <ReviewHeader> Reviews </ReviewHeader>
       <StatusGrid>
         <ReviewsSummary />
-        <SearchReview />
+        <SearchReview
+          searchInputHandle = {props.searchInputHandle}
+          searchPhrase = {props.searchPhrase}
+          clearField = {props.clearField}
+        />
       </StatusGrid>
     </ReviewSection>
   )

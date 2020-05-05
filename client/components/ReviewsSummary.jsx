@@ -4,10 +4,8 @@ import styled from "styled-components";
 const TotalScores = styled.div`
   display: flex;
   align-items: center;
-
   justify-content: flex-start;
 `;
-
 
 const StarBox = styled.div`
   display: flex;
@@ -23,6 +21,7 @@ const Total = styled.div`
   font-weight: 800px;
   line-height: 1.44em;
 `;
+
 const StarImg = styled.div`
   display: block;
   will-change: tranform;
