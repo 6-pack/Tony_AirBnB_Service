@@ -1,5 +1,5 @@
 module.exports = {
-  formatData: (data, count, {ratings, totalAverage}) => {
+  formatData: (data, count, { ratings, totalAverage }) => {
     const pageCount = Math.ceil(count / 6);
     const response = {
       pageCount,
@@ -29,23 +29,30 @@ module.exports = {
   },
 
   findAverages: (ratings, count) => {
-    let checkIn = 0, communication = 0, accuracy = 0, cleanliness = 0, value = 0, location = 0;
-    for (let review of ratings) {
-      checkIn += Number(review.checkin_rating)
-      communication += Number(review.communication_rating)
-      accuracy += Number(review.accuracy_rating)
-      cleanliness += Number(review.cleanliness_rating)
-      value += Number(review.value_rating)
-      location += Number(review.location_rating)
-    };
-    const sumAvg = (checkIn + communication + accuracy + cleanliness + value + location) / (count * 6);
+    let checkIn = 0;
+    let communication = 0;
+    let accuracy = 0;
+    let cleanliness = 0;
+    let value = 0;
+    let location = 0;
+    ratings.forEach((review) => {
+      checkIn += Number(review.checkin_rating);
+      communication += Number(review.communication_rating);
+      accuracy += Number(review.accuracy_rating);
+      cleanliness += Number(review.cleanliness_rating);
+      value += Number(review.value_rating);
+      location += Number(review.location_rating);
+    });
 
-    let ratingAverages = {
+    const sumAvg = (checkIn + communication + accuracy + cleanliness + value + location)
+     / (count * 6);
+
+    const ratingAverages = {
       totalAverage: (sumAvg).toFixed(1),
       ratings: {
         'Check-in': (checkIn / count).toFixed(1),
         Communication: (communication / count).toFixed(1),
-        Accuracy: (accuracy / count).toFixed(1) ,
+        Accuracy: (accuracy / count).toFixed(1),
         Cleanliness: (cleanliness / count).toFixed(1),
         Value: (value / count).toFixed(1),
         Location: (location / count).toFixed(1),
@@ -53,5 +60,4 @@ module.exports = {
     };
     return ratingAverages;
   },
-}
-
+};

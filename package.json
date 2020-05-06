@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "lint": "eslint --ext js,jsx .",
+    "lint": "eslint .",
     "react-dev": "webpack -d --watch",
     "server": "nodemon ./server/index.js",
     "generate-data": "node ./server/database/dataGenerator.js",
