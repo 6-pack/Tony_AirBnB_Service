@@ -18,20 +18,7 @@ describe('Render Test', () => {
   })
 });
 
-  // note: ** bad-test, Do not test internal STATE !! test the actual display value in the children component **
-  // describe('Function Test', () => {
-  //   const AppWrapper = mount(<App/>);
-  //   AppWrapper.instance().searchInputHandle('abc');
 
-  //   test('It should handle search Input', () => {
-  //     expect(AppWrapper.state('searchPhrase')).toEqual('abc')
-  //   })
-
-  //   test('It should handle clear Input', () => {
-  //     AppWrapper.instance().clearField();
-  //     expect(AppWrapper.state('searchPhrase')).toEqual('')
-  //   })
-  // })
 
 
 
