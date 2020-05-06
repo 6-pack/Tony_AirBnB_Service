@@ -7,8 +7,8 @@ const ReviewSection = styled.section`
   border-bottom: 1px solid grey;
   border-radius: 1px;
   height: 100px;
-  width: 670px;
-  text-color: blue;
+  width: 650px;
+  margin-bottom: 8px;
 `;
 
 const ReviewHeader = styled.div`
