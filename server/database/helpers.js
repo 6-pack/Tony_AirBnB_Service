@@ -1,9 +1,10 @@
 module.exports = {
-  formatData: (data, count, ratings) => {
+  formatData: (data, count, {ratings, totalAverage}) => {
     const pageCount = Math.ceil(count / 6);
     const response = {
       pageCount,
       reviewsCount: count,
+      totalAverage,
       ratings,
       pages: [],
     };
@@ -41,12 +42,14 @@ module.exports = {
 
     let ratingAverages = {
       totalAverage: (sumAvg).toFixed(1),
-      'Check-in': (checkIn / count).toFixed(1),
-      Communication: (communication / count).toFixed(1),
-      Accuracy: (accuracy / count).toFixed(1) ,
-      Cleanliness: (cleanliness / count).toFixed(1),
-      Value: (value / count).toFixed(1),
-      Location: (location / count).toFixed(1),
+      ratings: {
+        'Check-in': (checkIn / count).toFixed(1),
+        Communication: (communication / count).toFixed(1),
+        Accuracy: (accuracy / count).toFixed(1) ,
+        Cleanliness: (cleanliness / count).toFixed(1),
+        Value: (value / count).toFixed(1),
+        Location: (location / count).toFixed(1),
+      },
     };
     return ratingAverages;
   },

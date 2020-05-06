@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 const CategoryGrid = styled.div`
   display: grid;
   grid-template-columns: 130px 110px 35px;
@@ -24,7 +25,7 @@ const CategoryBar = styled.div`
 
 const ProgressBar = styled(CategoryBar)`
   background-color: rgb(41, 132, 137);
-  width: ${ (4.1 / 5) * 100 }%;
+  width: ${(props) =>  `${props.rating / 5 * 100}%`};
 `;
 
 const CategoryRating = styled.div`
@@ -38,11 +39,11 @@ const CategoryRating = styled.div`
 
 const Category = (props) => (
   <CategoryGrid>
-    <CategoryName> Test </CategoryName>
+    <CategoryName> {props.name} </CategoryName>
     <CategoryBar>
-      <ProgressBar/>
+      <ProgressBar rating={props.rating}/>
     </CategoryBar>
-    <CategoryRating> 4.5 </CategoryRating>
+    <CategoryRating> {props.rating} </CategoryRating>
   </CategoryGrid>
 )
 

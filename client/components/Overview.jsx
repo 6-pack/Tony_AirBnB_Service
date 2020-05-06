@@ -31,7 +31,10 @@ const Overview = (props) => (
   <ReviewSection>
     <ReviewHeader> Reviews </ReviewHeader>
     <StatusGrid>
-      <ReviewsSummary />
+      <ReviewsSummary
+        totalAverage={props.totalAverage}
+        totalReview={props.totalReview}
+      />
       <SearchReview
         searchInputHandle={props.searchInputHandle}
         searchPhrase={props.searchPhrase}
