@@ -26,7 +26,7 @@ class App extends React.Component {
   }
 
   getAllReviews() {
-    axios.get('/rooms/2/reviews')
+    axios.get('/rooms/4/reviews')
       .then((result) => {
         console.log(result);
         this.setState({ reviewList: result.data });
