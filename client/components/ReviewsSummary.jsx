@@ -13,7 +13,7 @@ const StarBox = styled.div`
   justify-content: flex-start;
   height: 26px;
   width: 55px;
-  padding: 0px 8px 0px 0px;
+
 `;
 
 const Total = styled.div`
@@ -48,18 +48,18 @@ const ReviewTotal = styled(Total)`
   width: 36px;
 `;
 
-const ReviewsSummary = () => (
+const ReviewsSummary = (props) => (
   <TotalScores>
 
     <StarBox>
       <StarImg />
-      <Total> 4.90 </Total>
+      <Total> {props.totalAverage} </Total>
     </StarBox>
 
     <Separator />
 
     <ReviewBox>
-      <ReviewTotal> 200</ReviewTotal>
+      <ReviewTotal> {props.totalReview}</ReviewTotal>
       <Total> reviews</Total>
     </ReviewBox>
 

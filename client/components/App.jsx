@@ -10,6 +10,9 @@ class App extends React.Component {
     this.state = {
       searchPhrase: '',
       reviewList: [],
+      ratings: [],
+      totalAverage: '',
+      totalReview: '',
     };
 
     this.searchInputHandle = this.searchInputHandle.bind(this);
@@ -26,10 +29,15 @@ class App extends React.Component {
   }
 
   getAllReviews() {
-    axios.get('/rooms/2/reviews')
-      .then((result) => {
-        console.log(result);
-        this.setState({ reviewList: result.data });
+    axios.get('/rooms/1/reviews')
+      .then(({ data }) => {
+        console.log(data);
+        this.setState({
+          reviewList: data,
+          ratings: data.ratings,
+          totalAverage: data.totalAverage,
+          totalReview: data.reviewsCount,
+        });
       })
       .catch((error) => console.log(error));
   }
@@ -43,11 +51,13 @@ class App extends React.Component {
       <div>
         <h4> Hello from React</h4>
         <Overview
+          totalAverage={this.state.totalAverage}
+          totalReview={this.state.totalReview}
           searchInputHandle={this.searchInputHandle}
           searchPhrase={this.state.searchPhrase}
           clearField={this.clearField}
         />
-        <Categories />
+        <Categories ratings={this.state.ratings} />
       </div>
     );
   }

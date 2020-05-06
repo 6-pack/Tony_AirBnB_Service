@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import _ from 'underscore';
 import Category from './Category.jsx';
 
 const ScoreGrid = styled.section`
@@ -14,12 +15,7 @@ const ScoreGrid = styled.section`
 
 const Categories = (props) => (
   <ScoreGrid>
-    <Category/>
-    <Category/>
-    <Category/>
-    <Category/>
-    <Category/>
-    <Category/>
+    { _.map(props.ratings, (rating, name) => <Category name={name} rating={rating} />)}
   </ScoreGrid>
 )
 

@@ -13,29 +13,29 @@ let fileContent = `
 
   CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    firstName VARCHAR(50) NOT NULL,
-    lastName VARCHAR(50) NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
     username VARCHAR(30) UNIQUE NOT NULL,
     avatar TEXT NOT NULL
   );
 
   CREATE TABLE rooms (
     id SERIAL PRIMARY KEY,
-    roomIdentification INT NOT NULL
+    room_identification INT NOT NULL
   );
 
   CREATE TABLE reviews (
     id SERIAL PRIMARY KEY,
-    userId INT NOT NULL,
-    roomId INT NOT NULL,
-    datePublished DATE NOT NULL,
+    user_id INT NOT NULL,
+    room_id INT NOT NULL,
+    date_published DATE NOT NULL,
     comment TEXT NOT NULL,
-    checkinRating DECIMAL NOT NULL,
-    accuracyRating DECIMAL NOT NULL,
-    valueRating DECIMAL NOT NULL,
-    communicationRating DECIMAL NOT NULL,
-    cleanlinessRating DECIMAL NOT NULL,
-    locationRating DECIMAL NOT NULL
+    checkin_rating DECIMAL NOT NULL,
+    accuracy_rating DECIMAL NOT NULL,
+    value_rating DECIMAL NOT NULL,
+    communication_rating DECIMAL NOT NULL,
+    cleanliness_rating DECIMAL NOT NULL,
+    location_rating DECIMAL NOT NULL
   );
 
 `;
@@ -44,9 +44,9 @@ let fileContent = `
 for (let i = 1; i <= 5; i += 1) {
   const roomIdentification = faker.random.number();
   if (i < 5) {
-    fileContent += `INSERT INTO rooms (roomIdentification) values (${roomIdentification}); \n`;
+    fileContent += `INSERT INTO rooms (room_identification) values (${roomIdentification}); \n`;
   } else {
-    fileContent += `INSERT INTO rooms (roomIdentification) values (${roomIdentification}); \n\n\n\n `;
+    fileContent += `INSERT INTO rooms (room_identification) values (${roomIdentification}); \n\n\n\n `;
   }
 }
 
@@ -57,9 +57,9 @@ for (let i = 1; i <= 100; i += 1) {
   const username = faker.internet.userName();
   const avatar = faker.image.avatar();
   if (i < 100) {
-    fileContent += `INSERT INTO users (firstName, lastName, username, avatar) values ('${firstName}', '${lastName}', '${username}', '${avatar}'); \n `;
+    fileContent += `INSERT INTO users (first_name, last_name, username, avatar) values ('${firstName}', '${lastName}', '${username}', '${avatar}'); \n `;
   } else {
-    fileContent += `INSERT INTO users (firstName, lastName, username, avatar) values ('${firstName}', '${lastName}', '${username}', '${avatar}'); \n\n\n\n `;
+    fileContent += `INSERT INTO users (first_name, last_name, username, avatar) values ('${firstName}', '${lastName}', '${username}', '${avatar}'); \n\n\n\n `;
   }
 }
 
@@ -74,7 +74,7 @@ for (let i = 1; i <= 5; i += 1) {
     const communicationRating = (Math.random() * 5).toFixed(1);
     const cleanlinessRating = (Math.random() * 5).toFixed(1);
     const locationRating = (Math.random() * 5).toFixed(1);
-    fileContent += `INSERT INTO reviews (userId, roomId, datePublished, comment, checkinRating, accuracyRating, valueRating, communicationRating, cleanlinessRating, locationRating) values (${j}, ${i}, '${datePublished}', '${comment}', ${checkinRating}, ${accuracyRating}, ${valueRating}, ${communicationRating}, ${cleanlinessRating}, ${locationRating}); \n\n`;
+    fileContent += `INSERT INTO reviews (user_id, room_id, date_published, comment, checkin_rating, accuracy_rating, value_rating, communication_rating, cleanliness_rating, location_rating) values (${j}, ${i}, '${datePublished}', '${comment}', ${checkinRating}, ${accuracyRating}, ${valueRating}, ${communicationRating}, ${cleanlinessRating}, ${locationRating}); \n\n`;
   }
 }
 
