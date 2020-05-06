@@ -13,9 +13,11 @@ const ScoreGrid = styled.section`
   margin-bottom: 8px;
 `;
 
+ScoreGrid.displayName = 'ScoreGrid';
+
 const Categories = (props) => (
   <ScoreGrid>
-    { _.map(props.ratings, (rating, name) => <Category name={name} rating={rating} />)}
+    { _.map(props.ratings, (rating, name) => <Category key={Math.random() * 9999} name={name} rating={rating} />)}
   </ScoreGrid>
 )
 
