@@ -8,7 +8,7 @@ const ScoreGrid = styled.section`
   justify-content: space-between;
   width: 650px;
   height: 90px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgb(216, 216, 216);
   margin-bottom: 8px;
 `;
 

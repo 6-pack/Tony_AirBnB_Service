@@ -18,12 +18,12 @@ const CategoryBar = styled.div`
   display: flex;
   border-radius: 5px;
   height: 5px;
-  background-color: gray;
+  background-color: rgb(216, 216, 216);
   width: 100%;
 `;
 
 const ProgressBar = styled(CategoryBar)`
-  background-color: blue;
+  background-color: rgb(41, 132, 137);
   width: ${ (4.1 / 5) * 100 }%;
 `;
 
