@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   getAllReviews() {
-    axios.get('/rooms/1/reviews')
+    axios.get('/rooms/2/reviews')
       .then(({ data }) => {
         console.log(data);
         this.setState({

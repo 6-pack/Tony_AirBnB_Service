@@ -44,15 +44,15 @@ const fetchReviews = (param, res) => {
       console.log('Error fetching data from pgsl : ', err);
       res.status(500).send(err);
     } else {
-      client.query(ratingSql, (err, ratings) => {
-        if (err) {
-          res.status(500).send(err)
+      client.query(ratingSql, (error, ratings) => {
+        if (error) {
+          res.status(500).send(error);
         } else {
-          const ratingsAverage = helpers.findAverages(ratings.rows, ratings.rowCount)
+          const ratingsAverage = helpers.findAverages(ratings.rows, ratings.rowCount);
           const formattedData = helpers.formatData(reviews.rows, reviews.rowCount, ratingsAverage);
           res.status(200).send(formattedData);
         }
-      })
+      });
     }
   });
 };
@@ -67,7 +67,7 @@ const searchReviews = (roomID, phrase, res) => {
     FROM
       reviews, users, rooms
     WHERE
-      room_id = ${param} AND reviews.user_id = users.id AND reviews.room_id = rooms.id AND reviews.comment ~* '.*${phrase}.*'
+      room_id = ${roomID} AND reviews.user_id = users.id AND reviews.room_id = rooms.id AND reviews.comment ~* '.*${phrase}.*'
     ORDER BY
       datePublished desc;`;
   client.query(sql, (err, result) => {
