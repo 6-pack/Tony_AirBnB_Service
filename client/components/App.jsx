@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Overview from './Overview.jsx';
+import Categories from './Categories.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class App extends React.Component {
           searchPhrase={this.state.searchPhrase}
           clearField={this.clearField}
         />
+        <Categories />
       </div>
     );
   }

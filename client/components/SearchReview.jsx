@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const SearchForm = styled.form`
   display: flex;
-  border: 1px solid ${(props) => (props.focused) ? 'blue' : 'gray'};
+  border: 1px solid ${(props) => (props.focused) ? 'rgb(41, 132, 137)' : 'gray'};
   padding: 0px 8px;
   border-radius: 5px;
   align-items: center;
@@ -23,7 +23,7 @@ const SearchInput = styled.input`
 
 const SearchIcon = styled.div`
   display: block;
-  will-change: tranform;
+  will-change: transform;
   height: 14px;
   width: 15px;
   background-size: 14px 14px;
