@@ -9,56 +9,56 @@ describe('Unit Tests', () => {
     test('It should render a form', () => {
       const wrapper = shallow(
         <SearchReview
-          searchInputHandle = { () => {}}
-          clearField = { () => {} }
-          searchPhrase = { '' }
+          searchInputHandle={() => {}}
+          clearField={() => {}}
+          searchPhrase=''
         />
-      )
+      );
       expect(wrapper.find('SearchForm')).toHaveLength(1);
     });
   });
 
   describe('Component Interaction Tests', () => {
-    test('It should invoke correct method when a change event is occurred' , () => {
+    test('It should invoke correct method when a change event is occurred', () => {
       const mockSearchHandle = jest.fn();
       const wrapper = shallow(
         <SearchReview
-          searchInputHandle = { () => {}}
-          clearField = { () => {} }
-          searchPhrase = { '' }
+          searchInputHandle={() => {}}
+          clearField={() => {}}
+          searchPhrase=''
         />
-      )
+      );
       wrapper.instance().searchHandle = mockSearchHandle;
       wrapper.instance().forceUpdate();
-      wrapper.find('SearchInput').simulate('change', {target: { name: 'search', value:'test'}} );
+      wrapper.find('SearchInput').simulate('change', { target: { name: 'search', value: 'test' } });
       expect(mockSearchHandle).toHaveBeenCalled();
     });
 
-    test('It should correctly update App\'s state when a change event is occured' , () => {
-      const AppWrapper = mount(<App/>)
+    test('It should correctly update App\'s state when a change event is occured', () => {
+      const AppWrapper = mount(<App />);
       const SearchWrapper = shallow(
         <SearchReview
-          searchInputHandle = { phrase  => {
-            AppWrapper.instance().setState({searchPhrase: phrase})
+          searchInputHandle={(phrase) => {
+            AppWrapper.instance().setState({ searchPhrase: phrase });
           }}
-          clearField = { () => {} }
-          searchPhrase = { '' }
+          clearField={() => {}}
+          searchPhrase=''
         />
       );
-      SearchWrapper.find('SearchInput').simulate('change', {target: { name: 'search', value:'test'}} );
+      SearchWrapper.find('SearchInput').simulate('change', { target: { name: 'search', value: 'test' } });
       expect(AppWrapper.state('searchPhrase')).toEqual('test');
     });
 
     test('It should clear App\'s search state when delete button is clicked', () => {
-      const AppWrapper = mount(<App/>)
-      AppWrapper.instance().setState({searchPhrase: 'abc'})
+      const AppWrapper = mount(<App/>);
+      AppWrapper.instance().setState({ searchPhrase: 'abc' });
       const SearchWrapper = shallow(
         <SearchReview
-          searchInputHandle = { () => {} }
-          clearField = { () => {
-            AppWrapper.instance().setState({searchPhrase: ''});
+          searchInputHandle={() => {}}
+          clearField={() => {
+            AppWrapper.instance().setState({ searchPhrase: '' });
           }}
-          searchPhrase = {'abc'}
+          searchPhrase='abc'
         />
       );
       SearchWrapper.find('CancelIcon').simulate('click');

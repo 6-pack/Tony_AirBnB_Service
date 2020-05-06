@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.91% </span>
+                <span class="strong">91.3% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/22</span>
+                <span class='fraction'>21/23</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.91% </span>
+                <span class="strong">91.3% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/22</span>
+                <span class='fraction'>21/23</span>
             </div>
         
             
@@ -154,7 +154,12 @@
 <a name='L95'></a><a href='#L95'>95</a>
 <a name='L96'></a><a href='#L96'>96</a>
 <a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -230,6 +235,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,6 +245,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -257,7 +267,7 @@ import styled from 'styled-components';
 &nbsp;
 const SearchForm = styled.form`
   display: flex;
-  border: 1px solid ${props =&gt; props.focused ? <span class="branch-0 cbranch-no" title="branch not covered" >"blue" </span>: "gray"};
+  border: 1px solid ${(props) =&gt; (props.focused) ? <span class="branch-0 cbranch-no" title="branch not covered" >'blue' </span>: 'gray'};
   padding: 0px 8px;
   border-radius: 5px;
   align-items: center;
@@ -293,7 +303,7 @@ const CancelIcon = styled.div`
   background-size: 14px 14px;
   background-repeat: space no-repeat;
   padding-left: 2px;
-  ${ props =&gt; (props.hide) ? 'background-color: white' : 'background-image: url("https://i.imgur.com/jJPp1y6.png")'};
+  ${(props) =&gt; (props.hide) ? 'background-color: white' : 'background-image: url("https://i.imgur.com/jJPp1y6.png")'};
 &nbsp;
 `;
 // displayName so enzyme can find styled component
@@ -304,11 +314,11 @@ CancelIcon.displayName = 'CancelIcon';
 &nbsp;
 class SearchReview extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 &nbsp;
     this.state = {
       isFocused: false,
-    }
+    };
 &nbsp;
     this.onFocusHandle = this.onFocusHandle.bind(this);
     this.onBlurHandle = this.onBlurHandle.bind(this);
@@ -318,44 +328,49 @@ class SearchReview extends React.Component {
 &nbsp;
 &nbsp;
 <span class="fstat-no" title="function not covered" >  on</span>FocusHandle() {
-<span class="cstat-no" title="statement not covered" >    this.setState({isFocused : true})</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({ isFocused: true });</span>
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  on</span>BlurHandle() {
-<span class="cstat-no" title="statement not covered" >    this.setState({isFocused : false})</span>
+<span class="cstat-no" title="statement not covered" >    this.setState({ isFocused: false });</span>
   }
 &nbsp;
   searchHandle(event) {
-    this.props.searchInputHandle(event.target.value);
+    const { target: { value } } = event;
+    this.props.searchInputHandle(value);
   }
 &nbsp;
-  clearSearchHandle(){
+  clearSearchHandle() {
     this.props.clearField();
   }
 &nbsp;
   render() {
-    let focused = this.state.isFocused;
+    const focused = this.state.isFocused;
     return (
-      &lt;SearchForm focused = {focused} onFocus={this.onFocusHandle} onBlur={this.onBlurHandle} &gt;
-        &lt;SearchInput type="text" placeholder="Search Reviews" name="seach"
-                     value = {this.props.searchPhrase}
-                     onChange = { this.searchHandle } /&gt;
-        { (this.props.searchPhrase === '') ? &lt;CancelIcon hide/&gt; : &lt;CancelIcon onClick = {this.clearSearchHandle}/&gt; }
-        &lt;SearchIcon type='submit'/&gt;
+      &lt;SearchForm focused={focused} onFocus={this.onFocusHandle} onBlur={this.onBlurHandle}&gt;
+        &lt;SearchInput
+          type="text"
+          placeholder="Search Reviews"
+          name="seach"
+          value={this.props.searchPhrase}
+          onChange={this.searchHandle}
+        /&gt;
+        { (this.props.searchPhrase === '') ? &lt;CancelIcon hide /&gt; : &lt;CancelIcon onClick={this.clearSearchHandle} /&gt; }
+        &lt;SearchIcon type="submit" /&gt;
       &lt;/SearchForm&gt;
-    )
+    );
   }
 }
 &nbsp;
-&nbsp;
-export default SearchReview;</pre></td></tr></table></pre>
+export default SearchReview;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue May 05 2020 17:07:19 GMT-0700 (PDT)
+                at Tue May 05 2020 19:22:08 GMT-0700 (PDT)
             </div>
         </div>
         <script src="prettify.js"></script>

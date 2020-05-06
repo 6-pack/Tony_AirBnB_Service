@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const SearchForm = styled.form`
   display: flex;
-  border: 1px solid ${props => props.focused ? "blue" : "gray"};
+  border: 1px solid ${(props) => (props.focused) ? 'blue' : 'gray'};
   padding: 0px 8px;
   border-radius: 5px;
   align-items: center;
@@ -40,7 +40,7 @@ const CancelIcon = styled.div`
   background-size: 14px 14px;
   background-repeat: space no-repeat;
   padding-left: 2px;
-  ${ props => (props.hide) ? 'background-color: white' : 'background-image: url("https://i.imgur.com/jJPp1y6.png")'};
+  ${(props) => (props.hide) ? 'background-color: white' : 'background-image: url("https://i.imgur.com/jJPp1y6.png")'};
 
 `;
 // displayName so enzyme can find styled component
@@ -51,11 +51,11 @@ CancelIcon.displayName = 'CancelIcon';
 
 class SearchReview extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       isFocused: false,
-    }
+    };
 
     this.onFocusHandle = this.onFocusHandle.bind(this);
     this.onBlurHandle = this.onBlurHandle.bind(this);
@@ -65,34 +65,38 @@ class SearchReview extends React.Component {
 
 
   onFocusHandle() {
-    this.setState({isFocused : true})
+    this.setState({ isFocused: true });
   }
 
   onBlurHandle() {
-    this.setState({isFocused : false})
+    this.setState({ isFocused: false });
   }
 
   searchHandle(event) {
-    this.props.searchInputHandle(event.target.value);
+    const { target: { value } } = event;
+    this.props.searchInputHandle(value);
   }
 
-  clearSearchHandle(){
+  clearSearchHandle() {
     this.props.clearField();
   }
 
   render() {
-    let focused = this.state.isFocused;
+    const focused = this.state.isFocused;
     return (
-      <SearchForm focused = {focused} onFocus={this.onFocusHandle} onBlur={this.onBlurHandle} >
-        <SearchInput type="text" placeholder="Search Reviews" name="seach"
-                     value = {this.props.searchPhrase}
-                     onChange = { this.searchHandle } />
-        { (this.props.searchPhrase === '') ? <CancelIcon hide/> : <CancelIcon onClick = {this.clearSearchHandle}/> }
-        <SearchIcon type='submit'/>
+      <SearchForm focused={focused} onFocus={this.onFocusHandle} onBlur={this.onBlurHandle}>
+        <SearchInput
+          type="text"
+          placeholder="Search Reviews"
+          name="seach"
+          value={this.props.searchPhrase}
+          onChange={this.searchHandle}
+        />
+        { (this.props.searchPhrase === '') ? <CancelIcon hide /> : <CancelIcon onClick={this.clearSearchHandle} /> }
+        <SearchIcon type="submit" />
       </SearchForm>
-    )
+    );
   }
 }
-
 
 export default SearchReview;

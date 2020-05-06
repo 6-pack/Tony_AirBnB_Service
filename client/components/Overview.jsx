@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import ReviewsSummary from "./ReviewsSummary.jsx";
-import SearchReview from "./SearchReview.jsx";
+import ReviewsSummary from './ReviewsSummary.jsx';
+import SearchReview from './SearchReview.jsx';
 
 const ReviewSection = styled.section`
   border-bottom: 1px solid grey;
@@ -27,21 +27,18 @@ const StatusGrid = styled.section`
 `;
 
 
-const Overview = (props) => {
-
-  return (
-    <ReviewSection>
-      <ReviewHeader> Reviews </ReviewHeader>
-      <StatusGrid>
-        <ReviewsSummary />
-        <SearchReview
-          searchInputHandle = {props.searchInputHandle}
-          searchPhrase = {props.searchPhrase}
-          clearField = {props.clearField}
-        />
-      </StatusGrid>
-    </ReviewSection>
-  )
-}
+const Overview = (props) => (
+  <ReviewSection>
+    <ReviewHeader> Reviews </ReviewHeader>
+    <StatusGrid>
+      <ReviewsSummary />
+      <SearchReview
+        searchInputHandle={props.searchInputHandle}
+        searchPhrase={props.searchPhrase}
+        clearField={props.clearField}
+      />
+    </StatusGrid>
+  </ReviewSection>
+);
 
 export default Overview;

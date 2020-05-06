@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const TotalScores = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ const StarImg = styled.div`
   height: 12px;
   width: 15px;
   background-size: 14px 12px;
-  background-image: url("https://i.imgur.com/lWEe6LL.png");
+  background-image: url('https://i.imgur.com/lWEe6LL.png');
   background-repeat: space no-repeat;
 `;
 
@@ -48,25 +48,23 @@ const ReviewTotal = styled(Total)`
   width: 36px;
 `;
 
-const ReviewsSummary = (props) => {
+const ReviewsSummary = () => (
+  <TotalScores>
 
-  return (
-    <TotalScores>
+    <StarBox>
+      <StarImg />
+      <Total> 4.90 </Total>
+    </StarBox>
 
-      <StarBox>
-        <StarImg />
-        <Total> 4.90 </Total>
-      </StarBox>
+    <Separator />
 
-      <Separator/>
+    <ReviewBox>
+      <ReviewTotal> 200</ReviewTotal>
+      <Total> reviews</Total>
+    </ReviewBox>
 
-      <ReviewBox>
-        <ReviewTotal> 200</ReviewTotal>
-        <Total> reviews</Total>
-      </ReviewBox>
+  </TotalScores>
+);
 
-    </TotalScores>
-  )
-}
 
 export default ReviewsSummary;
