@@ -28,18 +28,38 @@ const SelectButton = styled(Page)`
 class PageSelector extends React.Component {
   constructor(props){
     super(props)
+
+    this.state = {
+      selectedPage: 1,
+    }
+
+    this.nextPageClickHandle = this.nextPageClickHandle.bind(this);
+    this.previousPageClickHandle = this.previousPageClickHandle.bind(this);
+  }
+
+  nextPageClickHandle() {
+    const page = this.state.selectedPage + 1;
+    this.setState({selectedPage: page});
+  }
+
+  previousPageClickHandle() {
+    const currentPage = this.state.selectedPage;
+    const page = (currentPage > 1) ? currentPage -1 : 1;
+    this.setState({selectedPage: page});
   }
 
   render() {
     return (
       <PageContainer>
-        <SelectButton>&lsaquo;</SelectButton>
-        <Page>1 </Page>
-        <Page>2 </Page>
-        <Page>3 </Page>
-        <Page>4 </Page>
+        <SelectButton onClick={this.previousPageClickHandle}>&lsaquo;</SelectButton>
+        <Page onClick={this.onClickHandle} value='1'>1 </Page>
         <Page>... </Page>
-        <SelectButton>&rsaquo;</SelectButton>
+        <Page value='2'>2 </Page>
+        <Page value='3'>3 </Page>
+        <Page>4</Page>
+        <Page>... </Page>
+        <Page>10</Page>
+        <SelectButton onClick={this.nextPageClickHandle} value='next'>&rsaquo;</SelectButton>
       </PageContainer>
     )
   }
