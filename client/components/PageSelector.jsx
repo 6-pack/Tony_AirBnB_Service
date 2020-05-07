@@ -25,18 +25,24 @@ const SelectButton = styled(Page)`
 
 `;
 
-const PageSelector = (props) => {
-  return (
-    <PageContainer>
-      <SelectButton>&lsaquo;</SelectButton>
-      <Page>1 </Page>
-      <Page>2 </Page>
-      <Page>3 </Page>
-      <Page>4 </Page>
-      <Page>... </Page>
-      <SelectButton>&rsaquo;</SelectButton>
-    </PageContainer>
-  )
+class PageSelector extends React.Component {
+  constructor(props){
+    super(props)
+  }
+
+  render() {
+    return (
+      <PageContainer>
+        <SelectButton>&lsaquo;</SelectButton>
+        <Page>1 </Page>
+        <Page>2 </Page>
+        <Page>3 </Page>
+        <Page>4 </Page>
+        <Page>... </Page>
+        <SelectButton>&rsaquo;</SelectButton>
+      </PageContainer>
+    )
+  }
 };
 
 export default PageSelector;
