@@ -4,7 +4,7 @@ import ReviewsSummary from './ReviewsSummary.jsx';
 import SearchReview from './SearchReview.jsx';
 
 const ReviewSection = styled.section`
-  border-bottom: 1px solid rgb(216, 216, 216);
+  border-bottom: 1px solid rgb(235, 235, 235);
   border-radius: 1px;
   height: 100px;
   width: 650px;

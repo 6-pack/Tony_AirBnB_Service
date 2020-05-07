@@ -11,7 +11,7 @@ const ReviewContainer = styled.div`
     'avatar fullName'
     'avatar datePublished'
     'comment comment';
-  border-bottom: 1px solid rgb(216, 216, 216);
+  border-bottom: 1px solid rgb(235, 235, 235);
   margin-top: 10px;
   padding-bottom: 15px;
 `;
@@ -29,6 +29,9 @@ const FullName = styled.div`
   justify-content: start;
   align-items: center;
   margin-left: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35em;
 `;
 
 const DatePublished = styled.div`
@@ -37,11 +40,19 @@ const DatePublished = styled.div`
   justify-content: start;
   align-items: center;
   margin-left: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.28571em;
+  color: rgb(72, 72, 72);
 `;
 
 const Comment = styled.div`
   grid-area: comment;
   margin-top: 15px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.28571em;
+  color: rgb(72, 72, 72);
 `;
 
 
@@ -50,7 +61,7 @@ const Review = ({review}) => {
     <ReviewContainer>
       <Avatar imgUrl={review.avatar} />
       <FullName> {review.first_name} {review.last_name}</FullName>
-      <DatePublished> { moment(review.date_published).format("MMM YYYY")}</DatePublished>
+      <DatePublished> {moment(review.date_published).format("MMM YYYY")}</DatePublished>
       <Comment> {review.comment} </Comment>
     </ReviewContainer>
   )

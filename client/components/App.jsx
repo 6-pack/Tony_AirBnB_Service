@@ -54,7 +54,6 @@ class App extends React.Component {
     const {totalAverage, totalReview, searchPhrase, ratings, reviewList, currentPage} = this.state;
     return (
       <div>
-        <h4> Hello from React</h4>
         <Overview
           totalAverage={totalAverage}
           totalReview={totalReview}

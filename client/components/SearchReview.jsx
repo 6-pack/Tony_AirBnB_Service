@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const SearchForm = styled.form`
   display: flex;
-  border: 1px solid ${(props) => (props.focused) ? 'rgb(41, 132, 137)' : 'gray'};
+  border: 1px solid ${(props) => (props.focused) ? 'rgb(41, 132, 137)' : 'rgb(235, 235, 235)'};
   padding: 0px 8px;
   border-radius: 5px;
   align-items: center;

@@ -18,7 +18,7 @@ const CategoryName = styled.div`
 const CategoryBar = styled.div`
   display: flex;
   border-radius: 5px;
-  height: 5px;
+  height: 4px;
   background-color: rgb(216, 216, 216);
   width: 100%;
 `;
