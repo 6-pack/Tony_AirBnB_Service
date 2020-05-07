@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Overview from './Overview.jsx';
 import Categories from './Categories.jsx';
+import ReviewsList from './ReviewsList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class App extends React.Component {
       ratings: [],
       totalAverage: '',
       totalReview: '',
+      pageSelected: 1,
+      currentPage: '',
     };
 
     this.searchInputHandle = this.searchInputHandle.bind(this);
@@ -37,6 +40,7 @@ class App extends React.Component {
           ratings: data.ratings,
           totalAverage: data.totalAverage,
           totalReview: data.reviewsCount,
+          currentPage: data.pages[0].reviews,
         });
       })
       .catch((error) => console.log(error));
@@ -47,17 +51,18 @@ class App extends React.Component {
   }
 
   render() {
+    const {totalAverage, totalReview, searchPhrase, ratings, reviewList, currentPage} = this.state;
     return (
       <div>
-        <h4> Hello from React</h4>
         <Overview
-          totalAverage={this.state.totalAverage}
-          totalReview={this.state.totalReview}
+          totalAverage={totalAverage}
+          totalReview={totalReview}
           searchInputHandle={this.searchInputHandle}
-          searchPhrase={this.state.searchPhrase}
+          searchPhrase={searchPhrase}
           clearField={this.clearField}
         />
-        <Categories ratings={this.state.ratings} />
+        <Categories ratings={ratings} />
+        <ReviewsList reviewList={currentPage}/>
       </div>
     );
   }
