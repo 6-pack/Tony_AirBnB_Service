@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PageContainer = styled.div`
+const Pagination = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 100px;
+  /* height: 100px; */
 `;
 
 const Page = styled.li`
-  border: 1px solid ${ (props) => (props.selectedPage === props.Value) ? 'blue'  : 'white' };
+  border: 1px solid ${ (props) => (props.selectedPage === props.Value) ? 'rgb(41, 132, 137)'  : 'white' };
   display: flex;
   width: 32px;
   height: 32px;
@@ -23,10 +23,28 @@ const Page = styled.li`
 
 `;
 
+const PageBreak = styled.span`
+  display: flex;
+  width: 32px;
+  height: 32px;
+  color: rgb(41, 132, 137);
+  justify-content: center;
+  align-items: center;
+  margin: 0px 5px;
+
+`;
+
 const SelectButton = styled(Page)`
   border: 1px solid rgb(41, 132, 137);
 
 `;
+
+// const theme = () => {
+//   test() => {
+//     console.log('click');
+//     this.nextPageClickHandle
+//   }
+// }
 
 class PageSelector extends React.Component {
   constructor(props){
@@ -57,25 +75,49 @@ class PageSelector extends React.Component {
     const {pageCount} = this.props;
     const {selectedPage} = this.state;
     return (
-      <PageContainer>
-        {(selectedPage !== 1) && <SelectButton selectedPage={1} Value={0} onClick={this.previousPageClickHandle}>&lsaquo;</SelectButton>}
+      <Pagination>
+
+        {(selectedPage !== 1) &&
+          <SelectButton selectedPage={1} Value={0} onClick={this.previousPageClickHandle}>&lsaquo;</SelectButton>}
+
         <Page selectedPage={selectedPage} Value={1} value='1'>1</Page>
 
-        {(selectedPage >= 5) && <Page selectedPage={selectedPage} Value={0}>...</Page>}
+        {(selectedPage >= 5) && <PageBreak>...</PageBreak>}
 
-        {(selectedPage === pageCount) ? <Page selectedPage={selectedPage} Value={pageCount-2} value={pageCount-2}> {pageCount-2}</Page> : (selectedPage >= 5) ? <Page selectedPage={selectedPage} Value={selectedPage-1} value={selectedPage - 1}>{selectedPage - 1}</Page> : <Page selectedPage={selectedPage} Value={2} value='2'>2</Page>}
-        {(selectedPage === pageCount) ? <Page selectedPage={selectedPage} Value={pageCount-1} value={pageCount-1}> {pageCount-1}</Page> : (selectedPage >= 5) ? <Page selectedPage={selectedPage} Value={selectedPage} value={selectedPage}>{selectedPage}</Page> : <Page selectedPage={selectedPage} Value={3} value='3'>3</Page>}
-        {(selectedPage >= pageCount - 1) ? null : (selectedPage >= 5) ? <Page selectedPage={selectedPage} Value={selectedPage+1} value={selectedPage + 1}>{selectedPage + 1}</Page> : (selectedPage >= 3) ? <Page selectedPage={selectedPage} Value={4} value='4'>4</Page> : null }
+        {(selectedPage === pageCount) ?
+          <Page selectedPage={selectedPage} Value={pageCount-2} value={pageCount-2}> {pageCount-2}</Page> :
+            (selectedPage >= 5) ?
+              <Page selectedPage={selectedPage} Value={selectedPage-1} value={selectedPage - 1}>{selectedPage - 1}</Page> :
+                <Page selectedPage={selectedPage} Value={2} value='2'>2</Page>}
 
-        {(pageCount > 4 && selectedPage === 4) && <Page selectedPage={selectedPage} Value={5} value='5'>5</Page>}
+        {(selectedPage === pageCount) ?
+          <Page selectedPage={selectedPage} Value={pageCount-1} value={pageCount-1}> {pageCount-1}</Page> :
+            (selectedPage >= 5) ?
+              <Page selectedPage={selectedPage} Value={selectedPage} value={selectedPage}>{selectedPage}</Page> :
+                <Page selectedPage={selectedPage} Value={3} value='3'>3</Page>}
 
-        {(selectedPage <= pageCount - 4) && <Page selectedPage={selectedPage} Value={0}>...</Page>}
+        {(selectedPage >= pageCount - 1) ?
+          null : (selectedPage >= 5) ?
+            <Page selectedPage={selectedPage} Value={selectedPage+1} value={selectedPage + 1}>{selectedPage + 1}</Page> :
+              (selectedPage >= 3) ?
+                <Page selectedPage={selectedPage} Value={4} value='4'>4</Page> :
+                   null }
 
-        {(selectedPage === pageCount - 3) && <Page selectedPage={selectedPage} Value={pageCount-1} value={pageCount-1}>{pageCount-1}</Page>}
+        {(pageCount > 4 && selectedPage === 4) &&
+          <Page selectedPage={selectedPage} Value={5} value='5'>5</Page>}
+
+        {(selectedPage <= pageCount - 4) && <PageBreak>...</PageBreak>}
+
+
+        {(selectedPage === pageCount - 3) &&
+          <Page selectedPage={selectedPage} Value={pageCount-1} value={pageCount-1}>{pageCount-1}</Page>}
 
         <Page selectedPage={selectedPage} Value={pageCount} value={pageCount}> {pageCount} </Page>
-        {(selectedPage < pageCount) && <SelectButton selectedPage={1} Value={0} onClick={this.nextPageClickHandle}>&rsaquo;</SelectButton>}
-      </PageContainer>
+
+        {(selectedPage < pageCount) &&
+          <SelectButton selectedPage={1} Value={0} onClick={this.nextPageClickHandle}>&rsaquo;</SelectButton>}
+
+      </Pagination>
     )
   }
 };
