@@ -6,7 +6,6 @@ import Categories from './Categories/Categories.jsx';
 import ReviewsList from './ReviewsList/ReviewsList.jsx';
 
 const StyledDiv = styled.div`
-  scroll-behavior: smooth;
   width: 650px;
 `;
 

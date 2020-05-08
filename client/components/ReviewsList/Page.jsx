@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-scroll'
 
-const Page = styled.a`
+const Pg = styled.div`
   border: 1px solid ${(props) => (props.selectedPage === props.Value) ? 'rgb(41, 132, 137)'  : 'white' };
   display: flex;
   width: 32px;
@@ -11,10 +12,10 @@ const Page = styled.a`
   border-radius: 50%;
   justify-content: center;
   align-items: center;
-  margin: 0px 5px;
-  &:link, :visited {
+  margin: 0px 7px;
+  /* &:link, :visited {
   text-decoration: none;
-  }
+  } */
 
   &:hover {
     text-decoration: underline;
@@ -22,13 +23,15 @@ const Page = styled.a`
   }
 `;
 
-const PageNumber = ({pageHandle, selectedPage, value}) => {
+const Page = ({pageHandle, selectedPage, value}) => {
 
   return (
-    <Page href='#ReviewList' onClick={ () => pageHandle(value)} selectedPage={selectedPage} Value={value}>
-      {value}
-    </Page>
+    <Link to='ReviewList' smooth={true}>
+      <Pg onClick={ () => pageHandle(value)} selectedPage={selectedPage} Value={value}>
+        {value}
+      </Pg>
+    </Link>
   )
 }
 
-export default PageNumber;
+export default Page;

@@ -17,8 +17,9 @@ const SearchInput = styled.input`
   outline: none;
   width: 158px;
   padding: 6px 7px 6px 0;
+  margin: 1px 0;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 20px;
 `;
 
 const SearchIcon = styled.div`
