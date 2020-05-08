@@ -20,7 +20,6 @@ const ReviewsList = ({reviewList, pageCount, paginationHandle}) => {
       <ListContainer>
         <ReviewsContainer>
           {_.map(reviewList, (review) => <Review key={review.id} review={review} />)}
-          {/* <Review/> */}
         </ReviewsContainer>
 
         <PageSelector paginationHandle={paginationHandle} pageCount={pageCount}/>

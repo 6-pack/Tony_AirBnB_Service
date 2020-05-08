@@ -52,6 +52,7 @@ class App extends React.Component {
 
   paginationHandle(num) {
     const page = this.state.reviewList.pages[num-1].reviews
+    console.log(num);
     this.setState({currentPage: page})
   }
 
