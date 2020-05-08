@@ -1,8 +1,14 @@
 import React from 'react';
 import axios from 'axios';
-import Overview from './Overview.jsx';
-import Categories from './Categories.jsx';
-import ReviewsList from './ReviewsList.jsx';
+import styled from 'styled-components';
+import Overview from './Overview/Overview.jsx';
+import Categories from './Categories/Categories.jsx';
+import ReviewsList from './ReviewsList/ReviewsList.jsx';
+
+const StyledDiv = styled.div`
+  scroll-behavior: smooth;
+  width: 650px;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +28,7 @@ class App extends React.Component {
     this.searchInputHandle = this.searchInputHandle.bind(this);
     this.clearField = this.clearField.bind(this);
     this.getAllReviews = this.getAllReviews.bind(this);
-    this.paginationHandle = this.paginationHandle.bind(this);
+    this.pageHandle = this.pageHandle.bind(this);
   }
 
   searchInputHandle(phrase) {
@@ -50,7 +56,7 @@ class App extends React.Component {
       .catch((error) => console.log(error));
   }
 
-  paginationHandle(num) {
+  pageHandle(num) {
     const page = this.state.reviewList.pages[num-1].reviews
     console.log(num);
     this.setState({currentPage: page})
@@ -63,17 +69,18 @@ class App extends React.Component {
   render() {
     const {totalAverage, totalReview, searchPhrase, ratings, reviewList, currentPage, pageCount} = this.state;
     return (
-      <div>
+      <StyledDiv>
         <Overview
           totalAverage={totalAverage}
           totalReview={totalReview}
           searchInputHandle={this.searchInputHandle}
           searchPhrase={searchPhrase}
           clearField={this.clearField}
-        />
+          />
         <Categories ratings={ratings} />
-        <ReviewsList paginationHandle={this.paginationHandle} pageCount={pageCount} reviewList={currentPage}/>
-      </div>
+
+        <ReviewsList pageHandle={this.pageHandle} pageCount={pageCount} reviewList={currentPage}/>
+      </StyledDiv>
     );
   }
 }
