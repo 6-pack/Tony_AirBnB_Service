@@ -16,11 +16,13 @@ class App extends React.Component {
       totalReview: '',
       pageSelected: 1,
       currentPage: '',
+      pageCount: 1,
     };
 
     this.searchInputHandle = this.searchInputHandle.bind(this);
     this.clearField = this.clearField.bind(this);
     this.getAllReviews = this.getAllReviews.bind(this);
+    this.paginationHandle = this.paginationHandle.bind(this);
   }
 
   searchInputHandle(phrase) {
@@ -35,15 +37,22 @@ class App extends React.Component {
     axios.get('/rooms/2/reviews')
       .then(({ data }) => {
         console.log(data);
+        const {pageCount, ratings, totalAverage, reviewsCount, pages} = data;
         this.setState({
           reviewList: data,
-          ratings: data.ratings,
-          totalAverage: data.totalAverage,
-          totalReview: data.reviewsCount,
-          currentPage: data.pages[0].reviews,
+          ratings,
+          totalAverage,
+          totalReview: reviewsCount,
+          currentPage: pages[0].reviews,
+          pageCount,
         });
       })
       .catch((error) => console.log(error));
+  }
+
+  paginationHandle(num) {
+    const page = this.state.reviewList.pages[num-1].reviews
+    this.setState({currentPage: page})
   }
 
   componentDidMount() {
@@ -51,7 +60,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {totalAverage, totalReview, searchPhrase, ratings, reviewList, currentPage} = this.state;
+    const {totalAverage, totalReview, searchPhrase, ratings, reviewList, currentPage, pageCount} = this.state;
     return (
       <div>
         <Overview
@@ -62,7 +71,7 @@ class App extends React.Component {
           clearField={this.clearField}
         />
         <Categories ratings={ratings} />
-        <ReviewsList reviewList={currentPage}/>
+        <ReviewsList paginationHandle={this.paginationHandle} pageCount={pageCount} reviewList={currentPage}/>
       </div>
     );
   }

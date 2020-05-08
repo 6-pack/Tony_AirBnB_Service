@@ -15,7 +15,7 @@ const ReviewsContainer = styled.section`
 `;
 
 
-const ReviewsList = ({reviewList}) => {
+const ReviewsList = ({reviewList, pageCount, paginationHandle}) => {
   return (
       <ListContainer>
         <ReviewsContainer>
@@ -23,7 +23,7 @@ const ReviewsList = ({reviewList}) => {
           {/* <Review/> */}
         </ReviewsContainer>
 
-        <PageSelector/>
+        <PageSelector paginationHandle={paginationHandle} pageCount={pageCount}/>
 
       </ListContainer>
   )

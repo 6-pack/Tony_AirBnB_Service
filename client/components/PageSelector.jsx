@@ -40,26 +40,37 @@ class PageSelector extends React.Component {
   nextPageClickHandle() {
     const page = this.state.selectedPage + 1;
     this.setState({selectedPage: page});
+    this.props.paginationHandle(page)
+
   }
 
   previousPageClickHandle() {
-    const currentPage = this.state.selectedPage;
-    const page = (currentPage > 1) ? currentPage -1 : 1;
+    const page = this.state.selectedPage - 1;
     this.setState({selectedPage: page});
+    this.props.paginationHandle(page)
   }
 
   render() {
+    const {pageCount} = this.props;
+    const {selectedPage} = this.state;
     return (
       <PageContainer>
-        <SelectButton onClick={this.previousPageClickHandle}>&lsaquo;</SelectButton>
+        {(selectedPage === 1) ?
+          null : <SelectButton onClick={this.previousPageClickHandle}>&lsaquo;</SelectButton>}
+
         <Page onClick={this.onClickHandle} value='1'>1 </Page>
-        <Page>... </Page>
-        <Page value='2'>2 </Page>
-        <Page value='3'>3 </Page>
+
+        {(selectedPage >= 5) ? <Page>... </Page> : null }
+
+        <Page>2</Page>
+        <Page>3</Page>
         <Page>4</Page>
-        <Page>... </Page>
+        <Page>5</Page>
+
+        {(selectedPage <= pageCount - 4) ? <Page>... </Page> : null}
         <Page>10</Page>
-        <SelectButton onClick={this.nextPageClickHandle} value='next'>&rsaquo;</SelectButton>
+        {(selectedPage < pageCount) ?
+          <SelectButton onClick={this.nextPageClickHandle}>&rsaquo;</SelectButton> : null}
       </PageContainer>
     )
   }
