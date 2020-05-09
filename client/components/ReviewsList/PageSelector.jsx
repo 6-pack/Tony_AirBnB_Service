@@ -77,31 +77,36 @@ class PageSelector extends React.Component {
 
         {(selectedPage >= 5) && <PageBreak>...</PageBreak>}
 
-        {(selectedPage === pageCount) ?
-          <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount-2} />  :
-            (selectedPage >= 5) ?
-              <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={selectedPage-1}/> :
-                <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={2} /> }
+        {(pageCount>2) &&
+          ((selectedPage === pageCount) ?
+            <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount-2} />  :
+              (selectedPage >= 5) ?
+                <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={selectedPage-1}/> :
+                  <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={2} />)}
 
-        {(selectedPage === pageCount) ?
-          <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount-1} /> :
-            (selectedPage >= 5) ?
-              <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={selectedPage} /> :
-                <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={3} /> }
+        {(pageCount>3) &&
+          ((selectedPage === pageCount) ?
+            <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount-1} /> :
+              (selectedPage >= 5) ?
+                <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={selectedPage} /> :
+                  <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={3} /> )}
 
-        {(selectedPage >= pageCount - 1) ?
-          null : (selectedPage >= 5) ?
-            <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={selectedPage+1} /> :
-              (selectedPage >= 3) ?
-                <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={4} /> : null }
+        {(pageCount>4) &&
+          ((selectedPage >= pageCount - 1) ?
+            null : (selectedPage >= 5) ?
+              <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={selectedPage+1} /> :
+                (selectedPage >= 3) ?
+                  <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={4} /> : null )}
 
-        {(pageCount > 4 && selectedPage === 4) &&
-          <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={5} /> }
+        {(pageCount>5) &&
+          ((pageCount > 4 && selectedPage === 4) &&
+            <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={5} /> )}
 
         {(selectedPage <= pageCount - 4) && <PageBreak>...</PageBreak>}
 
-        {(selectedPage === pageCount - 3) &&
-          <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount-1} /> }
+        {(selectedPage === pageCount - 3 && pageCount > 4) ?
+          <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount-1} /> :
+            (selectedPage === 4 && pageCount === 5) && <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={4} /> }
 
         <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount} />
 

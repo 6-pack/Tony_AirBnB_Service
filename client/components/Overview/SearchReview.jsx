@@ -28,9 +28,12 @@ const SearchIcon = styled.div`
   height: 14px;
   width: 15px;
   background-size: 14px 14px;
-  background-image: url("https://i.imgur.com/JPBoBbB.png");
+  background-image: url("searchIcon.png");
   background-repeat: space no-repeat;
   padding-left: 2px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const CancelIcon = styled.div`
@@ -41,7 +44,10 @@ const CancelIcon = styled.div`
   background-size: 14px 14px;
   background-repeat: space no-repeat;
   padding-left: 2px;
-  ${(props) => (props.hide) ? 'background-color: white' : 'background-image: url("https://i.imgur.com/jJPp1y6.png")'};
+  ${(props) => (props.hide) ? 'background-color: white' : 'background-image: url("cancel.png")'};
+  &:hover {
+    cursor: pointer;
+  }
 
 `;
 // displayName so enzyme can find styled component
@@ -85,7 +91,7 @@ class SearchReview extends React.Component {
   render() {
     const focused = this.state.isFocused;
     return (
-      <SearchForm focused={focused} onFocus={this.onFocusHandle} onBlur={this.onBlurHandle}>
+      <SearchForm onSubmit={this.props.searchReview} focused={focused} onFocus={this.onFocusHandle} onBlur={this.onBlurHandle}>
         <SearchInput
           type="text"
           placeholder="Search Reviews"
@@ -94,7 +100,7 @@ class SearchReview extends React.Component {
           onChange={this.searchHandle}
         />
         { (this.props.searchPhrase === '') ? <CancelIcon hide /> : <CancelIcon onClick={this.clearSearchHandle} /> }
-        <SearchIcon type="submit" />
+        <SearchIcon onClick={this.props.searchReview} type="submit" />
       </SearchForm>
     );
   }

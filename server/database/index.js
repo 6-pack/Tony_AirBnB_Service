@@ -69,13 +69,13 @@ const searchReviews = (roomID, phrase, res) => {
     WHERE
       room_id = ${roomID} AND reviews.user_id = users.id AND reviews.room_id = rooms.id AND reviews.comment ~* '.*${phrase}.*'
     ORDER BY
-      datePublished desc;`;
+      date_published desc;`;
   client.query(sql, (err, result) => {
     if (err) {
       console.log('Error searching reviews from pgsl : ', err);
       res.status(500).send(err);
     } else {
-      const formattedData = helpers.formatData(result.rows, result.rowCount, null);
+      const formattedData = helpers.formatData(result.rows, result.rowCount);
       res.status(200).send(formattedData);
     }
   });

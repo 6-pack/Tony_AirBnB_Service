@@ -1,5 +1,5 @@
 module.exports = {
-  formatData: (data, count, { ratings, totalAverage }) => {
+  formatData: (data, count, { ratings, totalAverage } = {}) => {
     const pageCount = Math.ceil(count / 6);
     const response = {
       pageCount,

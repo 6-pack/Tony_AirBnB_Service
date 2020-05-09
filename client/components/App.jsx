@@ -28,6 +28,7 @@ class App extends React.Component {
     this.clearField = this.clearField.bind(this);
     this.getAllReviews = this.getAllReviews.bind(this);
     this.pageHandle = this.pageHandle.bind(this);
+    this.searchReview = this.searchReview.bind(this);
   }
 
   searchInputHandle(phrase) {
@@ -55,6 +56,25 @@ class App extends React.Component {
       .catch((error) => console.log(error));
   }
 
+  searchReview(event) {
+    event.preventDefault();
+    const phrase = this.state.searchPhrase;
+    axios.get(`/rooms/2/reviews/${phrase}`)
+      .then(({data}) => {
+        console.log(data)
+        const {pageCount, pages, reviewsCount} = data;
+        this.setState({
+          reviewList: data,
+          totalReview: reviewsCount,
+          currentPage: pages[0].reviews,
+          pageCount,
+        })
+        this.clearField()
+        this.forceUpdate();
+      })
+      .catch((error) => console.log(error))
+  }
+
   pageHandle(num) {
     const page = this.state.reviewList.pages[num-1].reviews
     console.log(num);
@@ -75,6 +95,7 @@ class App extends React.Component {
           searchInputHandle={this.searchInputHandle}
           searchPhrase={searchPhrase}
           clearField={this.clearField}
+          searchReview={this.searchReview}
           />
         <Categories ratings={ratings} />
 

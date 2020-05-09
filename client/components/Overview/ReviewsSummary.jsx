@@ -28,7 +28,7 @@ const StarImg = styled.div`
   height: 12px;
   width: 15px;
   background-size: 14px 12px;
-  background-image: url('https://i.imgur.com/lWEe6LL.png');
+  background-image: url('star.png');
   background-repeat: space no-repeat;
 `;
 
