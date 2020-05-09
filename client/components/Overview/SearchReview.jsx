@@ -31,6 +31,7 @@ const SearchIcon = styled.div`
   background-image: url("searchIcon.png");
   background-repeat: space no-repeat;
   padding-left: 2px;
+  opacity: ${(props) => (props.focused) ? 1 : 0.5};
   &:hover {
     cursor: pointer;
   }
@@ -100,7 +101,8 @@ class SearchReview extends React.Component {
           onChange={this.searchHandle}
         />
         { (this.props.searchPhrase === '') ? <CancelIcon hide /> : <CancelIcon onClick={this.clearSearchHandle} /> }
-        <SearchIcon onClick={this.props.searchReview} type="submit" />
+
+        <SearchIcon focused={focused} onClick={this.props.searchReview} type="submit" />
       </SearchForm>
     );
   }

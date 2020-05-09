@@ -68,9 +68,9 @@ class App extends React.Component {
           totalReview: reviewsCount,
           currentPage: pages[0].reviews,
           pageCount,
+          pageSelected: 1,
         })
         this.clearField()
-        this.forceUpdate();
       })
       .catch((error) => console.log(error))
   }
@@ -78,7 +78,10 @@ class App extends React.Component {
   pageHandle(num) {
     const page = this.state.reviewList.pages[num-1].reviews
     console.log(num);
-    this.setState({currentPage: page})
+    this.setState({
+      currentPage: page,
+      pageSelected: num,
+    })
   }
 
   componentDidMount() {
@@ -86,7 +89,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {totalAverage, totalReview, searchPhrase, ratings, reviewList, currentPage, pageCount} = this.state;
+    const {totalAverage, totalReview, pageSelected, searchPhrase, ratings, reviewList, currentPage, pageCount} = this.state;
     return (
       <StyledDiv>
         <Overview
@@ -96,10 +99,16 @@ class App extends React.Component {
           searchPhrase={searchPhrase}
           clearField={this.clearField}
           searchReview={this.searchReview}
-          />
+          pageSelected={pageSelected}
+        />
         <Categories ratings={ratings} />
 
-        <ReviewsList pageHandle={this.pageHandle} pageCount={pageCount} reviewList={currentPage}/>
+        <ReviewsList
+          pageSelected={pageSelected}
+          pageHandle={this.pageHandle}
+          pageCount={pageCount}
+          reviewList={currentPage}
+        />
       </StyledDiv>
     );
   }

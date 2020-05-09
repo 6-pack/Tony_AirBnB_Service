@@ -38,79 +38,71 @@ class PageSelector extends React.Component {
   constructor(props){
     super(props)
 
-    this.state = {
-      selectedPage: 1,
-    }
-
     this.nextPageClickHandle = this.nextPageClickHandle.bind(this);
     this.previousPageClickHandle = this.previousPageClickHandle.bind(this);
-    this.pageHandle = this.pageHandle.bind(this);
   }
 
   nextPageClickHandle() {
-    const page = this.state.selectedPage + 1;
-    this.setState({selectedPage: page});
+    const page = this.props.pageSelected + 1;
     this.props.pageHandle(page)
   }
 
   previousPageClickHandle() {
-    const page = this.state.selectedPage - 1;
-    this.setState({selectedPage: page});
+    const page = this.props.pageSelected - 1;
     this.props.pageHandle(page)
   }
 
-  pageHandle(num) {
-    this.setState({selectedPage: num});
-    this.props.pageHandle(num);
-  }
+  // pageHandle(num) {
+  //   this.setState({pageSelected: num});
+  //   this.props.pageHandle(num);
+  // }
 
   render() {
-    const {pageCount} = this.props;
-    const {selectedPage} = this.state;
+    const {pageCount, pageSelected} = this.props;
     return (
       <Pagination>
 
-        {(selectedPage !== 1) &&
+        {(pageSelected !== 1) &&
           <SelectButton onClick={this.previousPageClickHandle}>&lsaquo;</SelectButton>}
 
-        <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={1} />
+        <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={1} />
 
-        {(selectedPage >= 5) && <PageBreak>...</PageBreak>}
+        {(pageSelected >= 5) && <PageBreak>...</PageBreak>}
 
         {(pageCount>2) &&
-          ((selectedPage === pageCount) ?
-            <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount-2} />  :
-              (selectedPage >= 5) ?
-                <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={selectedPage-1}/> :
-                  <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={2} />)}
+          ((pageSelected === pageCount) ?
+            <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageCount-2} />  :
+              (pageSelected >= 5) ?
+                <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageSelected-1}/> :
+                  <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={2} />)}
 
         {(pageCount>3) &&
-          ((selectedPage === pageCount) ?
-            <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount-1} /> :
-              (selectedPage >= 5) ?
-                <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={selectedPage} /> :
-                  <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={3} /> )}
+          ((pageSelected === pageCount) ?
+            <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageCount-1} /> :
+              (pageSelected >= 5) ?
+                <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageSelected} /> :
+                  <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={3} /> )}
 
         {(pageCount>4) &&
-          ((selectedPage >= pageCount - 1) ?
-            null : (selectedPage >= 5) ?
-              <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={selectedPage+1} /> :
-                (selectedPage >= 3) ?
-                  <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={4} /> : null )}
+          ((pageSelected >= pageCount - 1) ?
+            null : (pageSelected >= 5) ?
+              <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageSelected+1} /> :
+                (pageSelected >= 3) ?
+                  <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={4} /> : null )}
 
         {(pageCount>5) &&
-          ((pageCount > 4 && selectedPage === 4) &&
-            <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={5} /> )}
+          ((pageCount > 4 && pageSelected === 4) &&
+            <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={5} /> )}
 
-        {(selectedPage <= pageCount - 4) && <PageBreak>...</PageBreak>}
+        {(pageSelected <= pageCount - 4) && <PageBreak>...</PageBreak>}
 
-        {(selectedPage === pageCount - 3 && pageCount > 4) ?
-          <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount-1} /> :
-            (selectedPage === 4 && pageCount === 5) && <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={4} /> }
+        {(pageSelected === pageCount - 3 && pageCount > 4) ?
+          <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageCount-1} /> :
+            (pageSelected === 4 && pageCount === 5) && <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={4} /> }
 
-        <Page pageHandle={this.pageHandle} selectedPage={selectedPage} value={pageCount} />
+        <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageCount} />
 
-        {(selectedPage < pageCount) &&
+        {(pageSelected < pageCount) &&
           <SelectButton onClick={this.nextPageClickHandle}>&rsaquo;</SelectButton>}
 
       </Pagination>

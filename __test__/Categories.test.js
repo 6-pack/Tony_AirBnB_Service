@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Categories from '../client/components/Categories.jsx';
-import Category from '../client/components/category.jsx';
+import Categories from '../client/components/Categories/Categories.jsx';
+import Category from '../client/components/Categories/category.jsx';
 
 describe('Unit Test for Categories', () => {
   test('It should render Categories component', () => {
