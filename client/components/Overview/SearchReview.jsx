@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 const SearchForm = styled.form`
   display: flex;
   border: 1px solid ${(props) => (props.focused) ? 'rgb(41, 132, 137)' : 'rgb(235, 235, 235)'};
@@ -49,7 +48,6 @@ const CancelIcon = styled.div`
   &:hover {
     cursor: pointer;
   }
-
 `;
 // displayName so enzyme can find styled component
 SearchInput.displayName = 'SearchInput';
@@ -71,7 +69,6 @@ class SearchReview extends React.Component {
     this.clearSearchHandle = this.clearSearchHandle.bind(this);
   }
 
-
   onFocusHandle() {
     this.setState({ isFocused: true });
   }
@@ -92,7 +89,12 @@ class SearchReview extends React.Component {
   render() {
     const focused = this.state.isFocused;
     return (
-      <SearchForm onSubmit={this.props.searchReview} focused={focused} onFocus={this.onFocusHandle} onBlur={this.onBlurHandle}>
+      <SearchForm
+        onSubmit={this.props.searchReview}
+        focused={focused}
+        onFocus={this.onFocusHandle}
+        onBlur={this.onBlurHandle}
+      >
         <SearchInput
           type="text"
           placeholder="Search Reviews"

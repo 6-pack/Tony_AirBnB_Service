@@ -13,10 +13,6 @@ const Pg = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0px 7px;
-  /* &:link, :visited {
-  text-decoration: none;
-  } */
-
   &:hover {
     text-decoration: underline;
     cursor: pointer;

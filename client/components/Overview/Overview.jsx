@@ -26,7 +26,6 @@ const StatusGrid = styled.section`
   grid-template-rows: 44px;
 `;
 
-
 const Overview = (props) => {
   const {totalAverage, totalReview, searchInputHandle,
           searchPhrase, clearField, searchReview} = props;

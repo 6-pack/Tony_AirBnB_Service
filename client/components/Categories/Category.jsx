@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 const CategoryGrid = styled.div`
   display: grid;
   grid-template-columns: 130px 110px 35px;
   justify-content: center;
   align-items: center;
-
 `;
 
 const CategoryName = styled.div`
@@ -35,7 +33,6 @@ const CategoryRating = styled.div`
   font-size: 16px;
   font-weight: 600;
 `;
-
 
 const Category = (props) => (
   <CategoryGrid>

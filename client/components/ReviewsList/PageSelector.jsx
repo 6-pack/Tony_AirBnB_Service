@@ -52,11 +52,6 @@ class PageSelector extends React.Component {
     this.props.pageHandle(page)
   }
 
-  // pageHandle(num) {
-  //   this.setState({pageSelected: num});
-  //   this.props.pageHandle(num);
-  // }
-
   render() {
     const {pageCount, pageSelected} = this.props;
     return (

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Overview from './Overview/Overview.jsx';
 import Categories from './Categories/Categories.jsx';
 import ReviewsList from './ReviewsList/ReviewsList.jsx';
+import SearchResult from './Overview/SearchResult.jsx';
 
 const StyledDiv = styled.div`
   width: 650px;
@@ -22,6 +23,10 @@ class App extends React.Component {
       pageSelected: 1,
       currentPage: '',
       pageCount: 1,
+      displaySearchResult: false,
+      noResult: false,
+      mention:'',
+      originalList: [],
     };
 
     this.searchInputHandle = this.searchInputHandle.bind(this);
@@ -29,6 +34,7 @@ class App extends React.Component {
     this.getAllReviews = this.getAllReviews.bind(this);
     this.pageHandle = this.pageHandle.bind(this);
     this.searchReview = this.searchReview.bind(this);
+    this.backToAllReviews = this.backToAllReviews.bind(this);
   }
 
   searchInputHandle(phrase) {
@@ -45,6 +51,7 @@ class App extends React.Component {
         console.log(data);
         const {pageCount, ratings, totalAverage, reviewsCount, pages} = data;
         this.setState({
+          originalList: data,
           reviewList: data,
           ratings,
           totalAverage,
@@ -63,16 +70,44 @@ class App extends React.Component {
       .then(({data}) => {
         console.log(data)
         const {pageCount, pages, reviewsCount} = data;
-        this.setState({
-          reviewList: data,
-          totalReview: reviewsCount,
-          currentPage: pages[0].reviews,
-          pageCount,
-          pageSelected: 1,
-        })
+        if (data.reviewsCount === 0) {
+          this.setState({
+            noResult: true,
+            displaySearchResult: true,
+            mention: phrase,
+            totalReview: 0,
+          })
+        } else {
+          this.setState({
+            reviewList: data,
+            totalReview: reviewsCount,
+            currentPage: pages[0].reviews,
+            pageCount,
+            pageSelected: 1,
+            displaySearchResult: true,
+            mention: phrase,
+            noResult: false,
+          })
+        }
         this.clearField()
       })
       .catch((error) => console.log(error))
+  }
+
+  backToAllReviews() {
+    const {pageCount, ratings, totalAverage, reviewsCount, pages} = this.state.originalList;
+    const originalList = this.state.originalList;
+    this.setState({
+      displaySearchResult: false,
+      reviewList: originalList,
+      ratings,
+      totalAverage,
+      totalReview: reviewsCount,
+      currentPage: pages[0].reviews,
+      pageSelected: 1,
+      pageCount,
+      noResult: false,
+    })
   }
 
   pageHandle(num) {
@@ -89,26 +124,42 @@ class App extends React.Component {
   }
 
   render() {
-    const {totalAverage, totalReview, pageSelected, searchPhrase, ratings, reviewList, currentPage, pageCount} = this.state;
+    const {totalAverage, totalReview, pageSelected, searchPhrase, ratings, noResult,
+       reviewList, currentPage, pageCount, displaySearchResult, mention} = this.state;
+    const originalCount = this.state.originalList.reviewsCount;
+    const originalAverage = this.state.originalList.totalAverage;
     return (
       <StyledDiv>
         <Overview
-          totalAverage={totalAverage}
-          totalReview={totalReview}
+          totalAverage={originalCount}
+          totalReview={originalAverage}
           searchInputHandle={this.searchInputHandle}
           searchPhrase={searchPhrase}
           clearField={this.clearField}
           searchReview={this.searchReview}
           pageSelected={pageSelected}
         />
-        <Categories ratings={ratings} />
 
-        <ReviewsList
-          pageSelected={pageSelected}
-          pageHandle={this.pageHandle}
-          pageCount={pageCount}
-          reviewList={currentPage}
-        />
+        {(displaySearchResult === false) &&
+          <Categories ratings={ratings} />
+        }
+
+        {(displaySearchResult === true) &&
+          <SearchResult
+            backToAllReviews={this.backToAllReviews}
+            mention={mention}
+            totalReview={totalReview}
+          />
+        }
+
+        {(!noResult) &&
+          <ReviewsList
+            pageSelected={pageSelected}
+            pageHandle={this.pageHandle}
+            pageCount={pageCount}
+            reviewList={currentPage}
+          />
+        }
       </StyledDiv>
     );
   }
