@@ -2,7 +2,7 @@ const { Client } = require('pg');
 const helpers = require('./helpers.js');
 
 const client = new Client({
-  user: 'whisly',
+  user: 'postgres',
   port: 5432,
   database: 'reviews',
 });

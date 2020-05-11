@@ -5,7 +5,7 @@ const db = require('./database/index.js');
 const route = require('./controller/route.js');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
 
 app.use(bodyParser.json());
 app.use('/', route.consoleLog);

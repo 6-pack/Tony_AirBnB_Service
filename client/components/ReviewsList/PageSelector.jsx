@@ -65,7 +65,7 @@ class PageSelector extends React.Component {
         {(pageSelected >= 5) && <PageBreak>...</PageBreak>}
 
         {(pageCount>2) &&
-          ((pageSelected === pageCount) ?
+          ((pageSelected === pageCount && pageCount !== 3) ?
             <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageCount-2} />  :
               (pageSelected >= 5) ?
                 <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageSelected-1}/> :
@@ -95,7 +95,7 @@ class PageSelector extends React.Component {
           <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageCount-1} /> :
             (pageSelected === 4 && pageCount === 5) && <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={4} /> }
 
-        <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageCount} />
+        {(pageCount!==1) && <Page pageHandle={this.props.pageHandle} pageSelected={pageSelected} value={pageCount} />}
 
         {(pageSelected < pageCount) &&
           <SelectButton onClick={this.nextPageClickHandle}>&rsaquo;</SelectButton>}

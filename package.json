@@ -12,7 +12,7 @@
     "react-dev": "webpack -d --watch",
     "server": "nodemon ./server/index.js",
     "generate-data": "node ./server/database/dataGenerator.js",
-    "seed": "psql -d postgres -U student < schema.sql",
+    "seed": "psql -U postgres < schema.sql",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
