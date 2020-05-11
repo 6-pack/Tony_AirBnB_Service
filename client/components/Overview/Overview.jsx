@@ -27,21 +27,26 @@ const StatusGrid = styled.section`
 `;
 
 
-const Overview = (props) => (
-  <ReviewSection>
-    <ReviewHeader> Reviews </ReviewHeader>
-    <StatusGrid>
-      <ReviewsSummary
-        totalAverage={props.totalAverage}
-        totalReview={props.totalReview}
-      />
-      <SearchReview
-        searchInputHandle={props.searchInputHandle}
-        searchPhrase={props.searchPhrase}
-        clearField={props.clearField}
-      />
-    </StatusGrid>
-  </ReviewSection>
-);
+const Overview = (props) => {
+  const {totalAverage, totalReview, searchInputHandle,
+          searchPhrase, clearField, searchReview} = props;
+  return (
+    <ReviewSection>
+      <ReviewHeader> Reviews </ReviewHeader>
+      <StatusGrid>
+        <ReviewsSummary
+          totalAverage={totalAverage}
+          totalReview={totalReview}
+        />
+        <SearchReview
+          searchInputHandle={searchInputHandle}
+          searchPhrase={searchPhrase}
+          clearField={clearField}
+          searchReview={searchReview}
+        />
+      </StatusGrid>
+    </ReviewSection>
+  )
+};
 
 export default Overview;

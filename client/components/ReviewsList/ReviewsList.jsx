@@ -15,14 +15,18 @@ const ReviewsContainer = styled.section`
 `;
 
 
-const ReviewsList = ({reviewList, pageCount, pageHandle}) => {
+const ReviewsList = ({pageSelected, reviewList, pageCount, pageHandle}) => {
   return (
       <ListContainer id="ReviewList">
         <ReviewsContainer>
           {_.map(reviewList, (review) => <Review key={review.id} review={review} />)}
         </ReviewsContainer>
 
-        <PageSelector pageHandle={pageHandle} pageCount={pageCount}/>
+        <PageSelector
+          pageHandle={pageHandle}
+          pageCount={pageCount}
+          pageSelected={pageSelected}
+        />
 
       </ListContainer>
   )

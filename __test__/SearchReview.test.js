@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import SearchReview from '../client/components/SearchReview.jsx';
+import SearchReview from '../client/components/Overview/SearchReview.jsx';
 import App from '../client/components/App.jsx';
 
 

@@ -28,6 +28,7 @@ class App extends React.Component {
     this.clearField = this.clearField.bind(this);
     this.getAllReviews = this.getAllReviews.bind(this);
     this.pageHandle = this.pageHandle.bind(this);
+    this.searchReview = this.searchReview.bind(this);
   }
 
   searchInputHandle(phrase) {
@@ -55,10 +56,32 @@ class App extends React.Component {
       .catch((error) => console.log(error));
   }
 
+  searchReview(event) {
+    event.preventDefault();
+    const phrase = this.state.searchPhrase;
+    axios.get(`/rooms/2/reviews/${phrase}`)
+      .then(({data}) => {
+        console.log(data)
+        const {pageCount, pages, reviewsCount} = data;
+        this.setState({
+          reviewList: data,
+          totalReview: reviewsCount,
+          currentPage: pages[0].reviews,
+          pageCount,
+          pageSelected: 1,
+        })
+        this.clearField()
+      })
+      .catch((error) => console.log(error))
+  }
+
   pageHandle(num) {
     const page = this.state.reviewList.pages[num-1].reviews
     console.log(num);
-    this.setState({currentPage: page})
+    this.setState({
+      currentPage: page,
+      pageSelected: num,
+    })
   }
 
   componentDidMount() {
@@ -66,7 +89,7 @@ class App extends React.Component {
   }
 
   render() {
-    const {totalAverage, totalReview, searchPhrase, ratings, reviewList, currentPage, pageCount} = this.state;
+    const {totalAverage, totalReview, pageSelected, searchPhrase, ratings, reviewList, currentPage, pageCount} = this.state;
     return (
       <StyledDiv>
         <Overview
@@ -75,10 +98,17 @@ class App extends React.Component {
           searchInputHandle={this.searchInputHandle}
           searchPhrase={searchPhrase}
           clearField={this.clearField}
-          />
+          searchReview={this.searchReview}
+          pageSelected={pageSelected}
+        />
         <Categories ratings={ratings} />
 
-        <ReviewsList pageHandle={this.pageHandle} pageCount={pageCount} reviewList={currentPage}/>
+        <ReviewsList
+          pageSelected={pageSelected}
+          pageHandle={this.pageHandle}
+          pageCount={pageCount}
+          reviewList={currentPage}
+        />
       </StyledDiv>
     );
   }
