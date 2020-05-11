@@ -14,7 +14,6 @@ const ReviewsContainer = styled.section`
   width: 650px;
 `;
 
-
 const ReviewsList = ({pageSelected, reviewList, pageCount, pageHandle}) => {
   return (
       <ListContainer id="ReviewList">

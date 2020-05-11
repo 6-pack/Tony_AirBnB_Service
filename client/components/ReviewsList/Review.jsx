@@ -55,7 +55,6 @@ const Comment = styled.div`
   color: rgb(72, 72, 72);
 `;
 
-
 const Review = ({review}) => {
   return (
     <ReviewContainer>

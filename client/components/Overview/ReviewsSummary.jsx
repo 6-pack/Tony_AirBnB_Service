@@ -13,7 +13,6 @@ const StarBox = styled.div`
   justify-content: flex-start;
   height: 26px;
   width: 55px;
-
 `;
 
 const Total = styled.div`
