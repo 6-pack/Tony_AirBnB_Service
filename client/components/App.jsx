@@ -131,8 +131,8 @@ class App extends React.Component {
     return (
       <StyledDiv>
         <Overview
-          totalAverage={originalCount}
-          totalReview={originalAverage}
+          totalAverage={originalAverage}
+          totalReview={originalCount}
           searchInputHandle={this.searchInputHandle}
           searchPhrase={searchPhrase}
           clearField={this.clearField}
