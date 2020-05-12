@@ -52,7 +52,7 @@ for (let i = 1; i <= 5; i += 1) {
 
 // create 100 random users
 for (let i = 1; i <= 100; i += 1) {
-  const firstName = faker.name.firstName();
+  const firstName = faker.name.firstName().replace(/'/, ' ');
   const lastName = faker.name.lastName().replace(/'/, ' ');
   const username = faker.internet.userName();
   const avatar = faker.image.avatar();
