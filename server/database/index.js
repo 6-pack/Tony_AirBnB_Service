@@ -2,16 +2,20 @@ const { Client } = require('pg');
 const helpers = require('./helpers.js');
 
 const client = new Client({
+  host: 'reviews_db',
   user: 'postgres',
-  port: 5432,
+  password: 'postgres',
   database: 'reviews',
+  // user: 'postgres',
+  // port: 5432,
+  // database: 'reviews',
 });
 
 client.connect((err) => {
   if (err) {
     console.log('Error from connecting to postgreSQL db :', err);
   } else {
-    console.log('Connected to PostGreSQL ');
+    console.log('Connected to PostGreSQL use review_db ');
   }
 });
 

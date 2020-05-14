@@ -29,7 +29,7 @@ const SearchResult = (props) => {
     <ResultGrid>
       {(props.totalReview === 0) ?
         <span> None of our guests have mentioned "{props.mention}"</span> :
-        <span> {props.totalReview} Guests have mentioned "{props.mention} </span>
+        <span> {props.totalReview} Guests have mentioned "{props.mention}" </span>
       }
       <ReturnButton onClick={props.backToAllReviews}>Back to All Reviews</ReturnButton>
     </ResultGrid>
