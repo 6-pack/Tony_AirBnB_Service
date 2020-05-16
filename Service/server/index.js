@@ -3,13 +3,17 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./database/index.js');
 const route = require('./controller/route.js');
+const expressStaticGzip = require('express-static-gzip');
 
 const app = express();
 const PORT = 3001;
 
 app.use(bodyParser.json());
 app.use('/', route.consoleLog);
-app.use(express.static(path.join(__dirname, '../public')));
+
+app.use('/', expressStaticGzip(path.join(__dirname, '../public'), {
+  enableBrotli: true
+ }));
 
 app.get('/rooms/:roomID/reviews', route.getReviews);
 app.get('/rooms/:roomID/reviews/:phrase', route.filterReviews);
