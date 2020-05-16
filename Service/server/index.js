@@ -5,12 +5,12 @@ const db = require('./database/index.js');
 const route = require('./controller/route.js');
 const expressStaticGzip = require('express-static-gzip');
 
+
 const app = express();
 const PORT = 3001;
 
 app.use(bodyParser.json());
 app.use('/', route.consoleLog);
-
 app.use('/', expressStaticGzip(path.join(__dirname, '../public'), {
   enableBrotli: true
  }));
